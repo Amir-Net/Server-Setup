@@ -22,6 +22,7 @@ if [[ $EUID -ne 0 ]]; then
     echo "This Script Must be Run with sudo Privileges."
     echo "Please Enter Root Password."
     su root
+    28g
   fi
 fi
 apt update
