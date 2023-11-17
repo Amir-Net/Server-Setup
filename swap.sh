@@ -17,10 +17,11 @@
 # -----------------------------------------------------------------------------
 if [[ $EUID -ne 0 ]]; then
   if [[ $(sudo -n true 2>/dev/null) ]]; then
-    echo "This script will be run with sudo privileges."
+    echo "This Script Will be Run with sudo Privileges."
   else
-    echo "This script must be run with sudo privileges."
-    exit 1
+    echo "This Script Must be Run with sudo Privileges."
+    echo "Please Enter Root Password."
+    su root
   fi
 fi
 fallocate -l 1G /swapfile
