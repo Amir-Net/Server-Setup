@@ -6,7 +6,6 @@ dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 1
     else
       dialog --title "Swap File" --inputbox "Enter the size of the SWAP file (e.g., 2G for 2 gigabytes):" 10 60 2> swap_size.txt
       swap_size=$(cat swap_size.txt)
-
       if [[ "$swap_size" =~ ^[0-9]+[GgMm]$ ]]; then
         dialog --infobox "Creating SWAP file. Please wait..." 10 60
         sudo fallocate -l "$swap_size" /swapfile
@@ -26,5 +25,6 @@ dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 1
   else
     dialog --msgbox "Skipping SWAP file creation." 10 60
   fi
-dialog --msgbox "$(swapon --show)" 10 50
+rm swap_size.txt
+dialog --msgbox "$(swapon --show)" 10 60
 clear
