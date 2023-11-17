@@ -26,3 +26,5 @@ dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 1
   else
     dialog --msgbox "Skipping SWAP file creation." 10 60
   fi
+dialog --msgbox "$(swapon --show)" 10 50
+clear
