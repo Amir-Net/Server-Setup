@@ -15,19 +15,37 @@
 #       running it on your system. Some configurations may require manual
 #       adjustments based on your specific needs and server setup.
 # -----------------------------------------------------------------------------
-system_update() {
-  dialog --title "System Update and Cleanup" --yesno "This operation will update your system and remove unnecessary packages. Do you want to proceed?" 10 60
-  response=$?
-  
-  if [ $response -eq 0 ]; then
-    sudo apt update -y
-    sudo apt upgrade -y
-    sudo apt autoremove -y
-    sudo apt autoclean -y
-    sudo apt clean -y
-
-    dialog --msgbox "System updates and cleanup completed." 10 60
-  else
-    dialog --msgbox "System updates and cleanup operation canceled." 10 60
-  fi
-}
+  echo "This Script Will be Run With Root Privileges."
+	echo "Please Enter Root Password."
+	su root
+	apt update
+  apt upgrade
+  apt autoremove
+  apt autoclean
+  apt clean
+  add-apt-repository universe
+	apt install sudo
+	apt install wget
+	apt install curl
+  apt install git
+  apt install ufw
+	apt install cron
+	apt install htop
+	apt install zip
+	apt install unzip
+	apt install xclip
+	apt install dialog
+	apt install net-tools
+	apt install certbot
+	apt install fail2ban
+	apt install screen
+	apt install python3
+	apt install python3-pip
+	apt install stunnel4
+	apt install nginx
+	apt install openssl
+	apt install resolvconf
+	apt install snap
+	apt install docker
+	apt install composer
+	apt-get install software-properties-common
