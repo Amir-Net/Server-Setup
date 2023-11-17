@@ -1,17 +1,33 @@
-wget -O /usr/bin/badvpn-udpgw "https://github.com/Amir-Net/Server-Setup/raw/main/badvpn-udpgw"
-if [ "$OS" == "x86_64" ]; then
-wget -O /usr/bin/badvpn-udpgw "https://github.com/Amir-Net/Server-Setup/raw/main/badvpn-udpgw64"
-fi
-wget -O /bin/badvpn-udpgw "https://github.com/Amir-Net/Server-Setup/raw/main/badvpn-udpgw"
-if [ "$OS" == "x86_64" ]; then
-wget -O /bin/badvpn-udpgw "https://github.com/Amir-Net/Server-Setup/raw/main/badvpn-udpgw64"
-fi
-touch /etc/rc.local
-sed -i '$ i\screen -dmS udpvpn /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10
-' /etc/rc.local
-chmod +x /usr/bin/badvpn-udpgw
-chmod +x /bin/badvpn-udpgw
-chmod +x /etc/rc.local
-systemctl enable rc-local
-systemctl start rc-local.service
-systemctl status rc-local.service
+#!/bin/bash
+clear
+udpport=7300
+echo -e "\nPlease input UDPGW Port ."
+printf "Default Port is \e[33m${udpport}\e[0m, let it blank to use this Port: "
+read udpport
+
+
+apt update -y
+apt install git cmake -y
+git clone https://github.com/ambrop72/badvpn.git /usr/badvpn
+mkdir /usr/badvpn/badvpn-build
+cd /usr/badvpn/badvpn-build
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1 &
+wait
+make &
+wait
+cp udpgw/badvpn-udpgw /usr/local/bin
+cat >  /etc/systemd/system/videocall.service << ENDOFFILE
+[Unit]
+Description=UDP forwarding for badvpn-tun2socks
+After=nss-lookup.target
+
+[Service]
+ExecStart=/usr/local/bin/badvpn-udpgw --loglevel none --listen-addr 127.0.0.1:$udpport --max-clients 999
+User=videocall
+
+[Install]
+WantedBy=multi-user.target
+ENDOFFILE
+useradd -m videocall
+systemctl enable videocall
+systemctl start videocall
