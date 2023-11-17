@@ -6,7 +6,6 @@ printf "Default Port is \e[33m${udpport}\e[0m, let it blank to use this Port: "
 read udpport
 
 apt update -y
-apt install git cmake -y
 git clone https://github.com/ambrop72/badvpn.git /usr/badvpn
 mkdir /usr/badvpn/badvpn-build
 cd /usr/badvpn/badvpn-build
