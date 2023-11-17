@@ -15,9 +15,15 @@
 #       running it on your system. Some configurations may require manual
 #       adjustments based on your specific needs and server setup.
 # -----------------------------------------------------------------------------
-echo "This Script Will be Run With Root Privileges."
-echo "Please Enter Root Password."
-su root
+if [[ $EUID -ne 0 ]]; then
+  if [[ $(sudo -n true 2>/dev/null) ]]; then
+    echo "This Script Will be Run with sudo Privileges."
+  else
+    echo "This Script Must be Run with sudo Privileges."
+    echo "Please Enter Root Password."
+    su root
+  fi
+fi
 apt update
 apt upgrade
 apt autoremove
