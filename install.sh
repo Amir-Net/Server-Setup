@@ -29,7 +29,7 @@ apt upgrade
 apt autoremove
 apt autoclean
 apt clean
-add-apt-repository universe
+
 apt install sudo
 apt install wget
 apt install curl
