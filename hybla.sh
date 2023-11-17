@@ -29,4 +29,3 @@
       echo "$setting" | sudo tee -a /etc/ufw/sysctl.conf
     done
     sysctl -p
-    sysctl net.ipv4.tcp_congestion_control
