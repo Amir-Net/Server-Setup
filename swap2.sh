@@ -26,7 +26,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
       #Setup swapfile
-      echo "Enter the size of the SWAP file (e.g., 2G for 2 gigabytes):" swap_size
+      read -p  "Enter the size of the SWAP file (e.g., 2G for 2 gigabytes):" swap_size
       if [[ "$swap_size" =~ ^[0-9]+[GgMm]$ ]]; then
         sudo fallocate -l "$swap_size" /swapfile
         sudo chmod 600 /swapfile
