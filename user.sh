@@ -27,7 +27,7 @@ fi
 clear
 
 # read on-login users
-  read -p  "Enter Your usernames (comma-separated, e.g.):" names
+  read -p  "Enter your usernames (comma-separated, e.g. A,B):" names
   
   # Add names to the user
   if [ -n "$names" ]; then
