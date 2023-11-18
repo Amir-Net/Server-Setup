@@ -1,4 +1,4 @@
-if [[ $EUID -ne 0 ]]; 
+if [[ $EUID == 0 ]]; 
 then
 apt update
 apt upgrade
