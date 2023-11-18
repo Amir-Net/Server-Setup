@@ -8,7 +8,8 @@ sudo apt install -y curl && sudo apt install -y dialog && sudo bash -c "$(curl -
 
 For manual installation, copy and run the following command in the terminal.
 ```
-sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/install.sh)"
+sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh)"
+sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh)"
