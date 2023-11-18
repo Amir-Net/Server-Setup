@@ -1,3 +1,12 @@
+# Check for sudo privileges
+if [[ $EUID -ne 0 ]]; then
+  if [[ $(sudo -n true 2>/dev/null) ]]; then
+    echo "This script will be run with sudo privileges."
+  else
+    echo "This script must be run with sudo privileges."
+    exit 1
+  fi
+fi
     # Add lines to /etc/security/limits.conf
     echo "* soft nofile 51200" | sudo tee -a /etc/security/limits.conf
     echo "* hard nofile 51200" | sudo tee -a /etc/security/limits.conf
@@ -28,4 +37,4 @@
     for setting in "${sysctl_settings[@]}"; do
       echo "$setting" | sudo tee -a /etc/ufw/sysctl.conf
     done
-    sysctl -p
+    sudo sysctl -p
