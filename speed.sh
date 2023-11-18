@@ -24,3 +24,9 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
   fi
 fi
+clear
+    # install Speedtest
+    curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+    sudo apt-get -y install speedtest
+    echo "Speedtest has been installed successfully."
+    speedtest
