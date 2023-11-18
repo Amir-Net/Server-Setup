@@ -24,11 +24,14 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
   fi
 fi
+clear
+
     # Add lines to /etc/security/limits.conf
     echo "* soft nofile 51200" | sudo tee -a /etc/security/limits.conf
     echo "* hard nofile 51200" | sudo tee -a /etc/security/limits.conf
     # Run ulimit command
     ulimit -n 51200
+    
     # Add lines to /etc/ufw/sysctl.conf
     sysctl_settings=(
       "fs.file-max = 51200"
