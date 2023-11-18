@@ -1,22 +1,45 @@
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# Description: This script automates the setup and configuration of various
+#              utilities and services on a Linux server for a secure and
+#              optimized environment.
+#
+# Author: BabyBoss
+# GitHub: https://github.com/Amir-Net/
+#
+# Disclaimer: This script is provided for educational and informational
+#             purposes only. Use it responsibly and in compliance with all
+#             applicable laws and regulations.
+#
+# Note: Make sure to review and understand each section of the script before
+#       running it on your system. Some configurations may require manual
+#       adjustments based on your specific needs and server setup.
+# -----------------------------------------------------------------------------
+# Check for sudo privileges
+if [[ $EUID -ne 0 ]]; then
+  if [[ $(sudo -n true 2>/dev/null) ]]; then
+    echo "This script will be run with sudo privileges."
+  else
+    echo "This script must be run with sudo privileges."
+    exit 1
+  fi
+fi
+clear
+
+  # install certificate
   apt install -y certbot
-  dialog --title "Obtain SSL Certificates" --yesno "Do you want to Get SSL Certificates?" 10 60
+  echo "Do you want to Get SSL Certificates?"
   response=$?
   if [ $response -eq 0 ]; then
-    dialog --title "SSL Certificate Information" --inputbox "Enter your email:" 10 60 2> email.txt
-    email=$(cat email.txt)
-    dialog --title "SSL Certificate Information" --inputbox "Enter your domain (e.g., sub.domain.com):" 10 60 2> domain.txt
-    domain=$(cat domain.txt)
-
+    read -p "Enter your email:" email
+    read -p "Enter your domain (e.g., sub.domain.com):" domain
     if [ -n "$email" ] && [ -n "$domain" ]; then
       sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email "$email" -d "$domain"
-
-      # Wait for the user to press Enter
       read -p "Please Press Enter to continue"
-
-      dialog --msgbox "SSL certificates obtained successfully for $domain in /etc/letsencrypt/live." 10 60
+      echo "SSL certificates obtained successfully for $domain in /etc/letsencrypt/live."
     else
-      dialog --msgbox "Both email and domain are required to obtain SSL certificates." 10 60
+      echo "Both email and domain are required to obtain SSL certificates."
     fi
-  else
-    dialog --msgbox "Skipping SSL certificate acquisition." 10 40
-  fi
+   else
+      echo "Skipping SSL certificate acquisition."
+   fi
