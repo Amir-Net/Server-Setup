@@ -29,7 +29,7 @@ fi
   sudo ufw default allow outgoing
   
   # Prompt the user for the SSH port to allow
-  sudo read -p "SSH Port" - "Enter the SSH port to allow (default is 22):" ssh_port
+  sudo read -p "SSH Port-Enter the SSH port to allow (default is 22):" ssh_port
   
   # Check if the SSH port is empty and set it to default (22) if not provided
   if [ -z "$ssh_port" ]; then
@@ -41,7 +41,7 @@ fi
   sudo unset ssh_port
   
   # Prompt the user for additional ports to open
-  sudo read -p  "Additional Ports" - "Enter additional ports to open (comma-separated, e.g., 80,443):" ufw_ports
+  sudo read -p  "Additional Ports-Enter additional ports to open (comma-separated, e.g., 80,443):" ufw_ports
   
   # Allow additional ports specified by the user
   if [ -n "$ufw_ports" ]; then
