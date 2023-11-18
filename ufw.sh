@@ -55,3 +55,4 @@ fi
   # Enable UFW to start at boot
   sudo ufw enable
   sudo systemctl enable ufw
+  sudo ufw status
