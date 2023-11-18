@@ -35,6 +35,7 @@ fi
   if [ -z "$ssh_port" ]; then
     ssh_port=22
   fi
+  clear
   
   # Allow SSH port
   sudo ufw allow "$ssh_port/tcp"
