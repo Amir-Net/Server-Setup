@@ -26,14 +26,14 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
-# read on-login users
+  # read on-login users
   read -p  "Enter your usernames (comma-separated, e.g. A,B):" user_names
+  
+  # Add names to the user
     if [ -n "$user_names" ]; then
-    IFS=',' read -ra ports_array <<< "$user_names"
-    for port in "${ports_array[@]}"; do
+    IFS=',' read -ra names_array <<< "$user_names"
+    for port in "${names_array[@]}"; do
       sudo adduser "$port" --shell /usr/sbin/nologin
     done
   fi
-  unset ufw_ports
-  # Add names to the user
-
+  unset user_names
