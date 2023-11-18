@@ -27,13 +27,13 @@ fi
 clear
 
 # read on-login users
-  read -p  "Enter your usernames (comma-separated, e.g. A,B):" names
-  
-  # Add names to the user
-  if [ -p "$names" ]; then
-    IFS=',' read -ra names_array <<< "$names"
-    for name in "${names_array[@]}"; do
-      adduser $name --shell /usr/sbin/nologin
+  read -p  "Enter your usernames (comma-separated, e.g. A,B):" user_names
+    if [ -n "$user_names" ]; then
+    IFS=',' read -ra ports_array <<< "$user_names"
+    for port in "${ports_array[@]}"; do
+      sudo adduser "$port" --shell /usr/sbin/nologin
     done
   fi
- unset names
+  unset ufw_ports
+  # Add names to the user
+
