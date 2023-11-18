@@ -1,13 +1,33 @@
-dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 10 60
-  response=$?
-  if [ $response -eq 0 ]; then
-    if [ -f /swapfile ]; then
-      dialog --title "Swap File" --msgbox "A SWAP file already exists. Skipping swap file creation." 10 60
-    else
-      dialog --title "Swap File" --inputbox "Enter the size of the SWAP file (e.g., 2G for 2 gigabytes):" 10 60 2> swap_size.txt
-      swap_size=$(cat swap_size.txt)
+#!/bin/bash
+# -----------------------------------------------------------------------------
+# Description: This script automates the setup and configuration of various
+#              utilities and services on a Linux server for a secure and
+#              optimized environment.
+#
+# Author: BabyBoss
+# GitHub: https://github.com/Amir-Net/
+#
+# Disclaimer: This script is provided for educational and informational
+#             purposes only. Use it responsibly and in compliance with all
+#             applicable laws and regulations.
+#
+# Note: Make sure to review and understand each section of the script before
+#       running it on your system. Some configurations may require manual
+#       adjustments based on your specific needs and server setup.
+# -----------------------------------------------------------------------------
+# Check for sudo privileges
+if [[ $EUID -ne 0 ]]; then
+  if [[ $(sudo -n true 2>/dev/null) ]]; then
+    echo "This script will be run with sudo privileges."
+  else
+    echo "This script must be run with sudo privileges."
+    exit 1
+  fi
+fi
+clear
+      #Setup swapfile
+      echo "Enter the size of the SWAP file (e.g., 2G for 2 gigabytes):" swap_size
       if [[ "$swap_size" =~ ^[0-9]+[GgMm]$ ]]; then
-        dialog --infobox "Creating SWAP file. Please wait..." 10 60
         sudo fallocate -l "$swap_size" /swapfile
         sudo chmod 600 /swapfile
         sudo mkswap /swapfile
@@ -17,14 +37,11 @@ dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 1
         sudo sysctl vm.vfs_cache_pressure=50
         echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
         echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf
-        dialog --msgbox "SWAP file created successfully with a size of $swap_size." 10 60
+        echo "SWAP file created successfully with a size of $swap_size."
       else
-        dialog --msgbox "Invalid SWAP file size. Please provide a valid size (e.g., 2G for 2 gigabytes)." 10 60
-      fi
-    fi
-  else
-    dialog --msgbox "Skipping SWAP file creation." 10 60
-  fi
-rm swap_size.txt
-dialog --msgbox "$(swapon --show)" 10 60
-clear
+       echo "Invalid SWAP file size. Please provide a valid size (e.g., 2G for 2 gigabytes).
+       fi
+   # Show swapfile     
+   unset swap_size
+   swapon --show
+   free -h
