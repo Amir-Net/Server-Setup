@@ -32,8 +32,8 @@ clear
   # Add names to the user
   if [ -n "$names" ]; then
     IFS=',' read -ra names_array <<< "$names"
-    for port in "${names_array[@]}"; do
-      adduser $names --shell /usr/sbin/nologin
+    for name in "${names_array[@]}"; do
+      adduser $name --shell /usr/sbin/nologin
     done
   fi
  unset names
