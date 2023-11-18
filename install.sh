@@ -24,35 +24,42 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
   fi
 fi
+clear
+
 # System Preparation
 apt update
 apt upgrade
 apt autoremove
 apt autoclean
 apt clean
+
 # System Installation
-apt install sudo
-apt install wget
-apt install curl
-apt install git
-apt install ufw
-apt install cron
-apt install htop
-apt install zip
-apt install unzip
-apt install xclip
-apt install dialog
-apt install net-tools
-apt install certbot
-apt install fail2ban
-apt install screen
-apt install python3
-apt install python3-pip
-apt install stunnel4
-apt install nginx
-apt install openssl
-apt install resolvconf
-apt install snap
-apt install docker
-apt install composer
-apt-get install software-properties-common
+apt install -y sudo
+apt install -y wget
+apt install -y curl
+apt install -y git
+apt install -y ufw
+apt install -y cron
+apt install -y htop
+apt install -y zip
+apt install -y unzip
+apt install -y xclip
+apt install -y dialog
+apt install -y cmake
+apt install -y timeshift
+apt install -y net-tools
+apt install -y certbot
+apt install -y fail2ban
+apt install -y screen
+apt install -y python3
+apt install -y python3-pip
+apt install -y stunnel4
+apt install -y nginx
+apt install -y openssl
+apt install -y resolvconf
+apt install -y snap
+apt install -y snapd
+apt install -y docker
+apt install -y composer
+apt install -y build-essential
+apt install -y software-properties-common
