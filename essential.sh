@@ -49,7 +49,6 @@ apt install -y certbot
 apt install -y fail2ban
 apt install -y screen
 apt install -y stunnel4
-apt install -y nginx
 apt install -y openssl
 apt install -y resolvconf
 apt install -y build-essential
