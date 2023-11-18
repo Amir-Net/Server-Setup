@@ -39,9 +39,10 @@ clear
         echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.conf
         echo "SWAP file created successfully with a size of $swap_size."
       else
-       echo "Invalid SWAP file size. Please provide a valid size (e.g., 2G for 2 gigabytes).
-       fi
-   # Show swapfile     
-   unset swap_size
-   swapon --show
-   free -h
+       echo "Invalid SWAP file size. Please provide a valid size (e.g., 2G for 2 gigabytes)."
+      fi
+      
+     # Show swapfile     
+     unset swap_size
+     swapon --show
+     free -h
