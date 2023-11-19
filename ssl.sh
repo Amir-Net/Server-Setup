@@ -27,19 +27,14 @@ fi
 clear
 
   # install certificate
-  apt install -y certbot
-  echo "Do you want to Get SSL Certificates?"
-  response=$?
-  if [ $response -eq 0 ]; then
-    read -p "Enter your email:" email
-    read -p "Enter your domain (e.g., sub.domain.com):" domain
-    if [ -n "$email" ] && [ -n "$domain" ]; then
-      sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email "$email" -d "$domain"
-      read -p "Please Press Enter to continue"
-      echo "SSL certificates obtained successfully for $domain in /etc/letsencrypt/live."
-    else
-      echo "Both email and domain are required to obtain SSL certificates."
-    fi
-   else
-      echo "Skipping SSL certificate acquisition."
-   fi
+  sudo apt install -y certbot
+  echo "SSL/TLS Certificates by Letsencrypt"
+  read -p "Enter your email:" email
+  read -p "Enter your domain (e.g., sub.domain.com):" domain
+  if [ -n "$email" ] && [ -n "$domain" ]; then
+  sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email "$email" -d "$domain"
+  read -p "Please Press Enter to continue"
+  echo "SSL/TLS certificates obtained successfully for $domain in /etc/letsencrypt/live."
+  else
+  echo "Both email and domain are required to obtain SSL certificates."
+  fi
