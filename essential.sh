@@ -27,29 +27,27 @@ fi
 clear
 
 # System Preparation
-apt update
-apt upgrade
-apt autoremove
-apt autoclean
-apt clean
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt autoremove -y
+sudo apt autoclean -y
+sudo apt clean -y
 
 # System Installation
-apt install -y sudo
-apt install -y wget
-apt install -y curl
-apt install -y git
-apt install -y ufw
-apt install -y cron
-apt install -y htop
-apt install -y zip
-apt install -y unzip
-apt install -y dialog
-apt install -y net-tools
-apt install -y certbot
-apt install -y fail2ban
-apt install -y screen
-apt install -y stunnel4
-apt install -y openssl
-apt install -y resolvconf
-apt install -y build-essential
-apt install -y software-properties-common
+sudo apt install -y sudo
+sudo apt install -y wget
+sudo apt install -y curl
+sudo apt install -y git
+sudo apt install -y ufw
+sudo apt install -y cron
+sudo apt install -y htop
+sudo apt install -y zip
+sudo apt install -y unzip
+sudo apt install -y xclip
+sudo apt install -y net-tools
+sudo apt install -y certbot
+sudo apt install -y fail2ban
+sudo apt install -y screen
+sudo apt install -y openssl
+sudo apt install -y resolvconf
+sudo apt install -y build-essential
