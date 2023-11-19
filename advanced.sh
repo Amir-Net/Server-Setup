@@ -61,6 +61,7 @@ sudo apt install -y snap
 sudo apt install -y snapd
 sudo apt install -y docker
 sudo apt install -y composer
+sudo apt install -y golang
 sudo apt install -y golang-go
 sudo apt install -y build-essential
 sudo apt install -y software-properties-common
