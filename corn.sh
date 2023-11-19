@@ -31,3 +31,5 @@ sudo systemctl enable cron
 crontab -e
 00 22 * * * /usr/bin/apt-get update && /usr/bin/apt-get upgrade -y && /usr/bin/apt-get autoremove -y && /usr/bin/apt-get autoclean -y && /usr/bin/apt-get clean -y
 30 22 * * * /sbin/shutdown -r
+echo "30 22 * * * /sbin/shutdown -r" | sudo tee -a /etc/crontab
+echo "System restarts have been scheduled and automatic updates."
