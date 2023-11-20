@@ -2,13 +2,21 @@
 Atomatic Fresh Server Setup Script
 Installation steps on Ubuntu
 Connect to your server through ssh and copy and run the following command in the terminal
+
+Server Preparation
 ```
-sudo apt install -y curl && sudo apt install -y dialog && sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start.sh)"
+sudo apt update -y && sudo apt upgrade -y && reboot
+sudo apt install -y curl && sudo apt install -y dialog
+```
+
+Server Installation
+```
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start.sh | bash
 ```
 
 For manual installation, copy and run the following command in the terminal.
 ```
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh)"
+sudo bash curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh | bash
 sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh)"
 sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh)"
 sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh)"
