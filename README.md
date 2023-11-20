@@ -11,25 +11,25 @@ sudo apt install -y curl && sudo apt install -y dialog
 
 Server Installation
 ```
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start.sh | bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start.sh | bash
 ```
 
 For manual installation, copy and run the following command in the terminal.
 ```
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ssl.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tls.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/swap.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/corn.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/udpgw.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/site.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ufw.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/user.sh | sudo bash
-sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/warp.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ssl.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tls.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/swap.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/corn.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/udpgw.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/site.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ufw.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/user.sh | sudo bash
+sudo curl https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/warp.sh | sudo bash
 ```
 Used Projects in this script 🙏
 ```
