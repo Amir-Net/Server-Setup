@@ -26,12 +26,40 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
-# Setup swapfile
-fallocate -l 1G /swapfile
-dd if=/dev/zero of=/swapfile bs=1024 count=1048576
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-sed -i '$ /swapfile swap swap defaults 0 0' /etc/fstab
-swapon --show
-free -h
+# Setup nginx
+sudo apt update -y
+sudo apt install  -y nginx
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
+sudo ufw allow 'Nginx Full'
+systemctl status nginx
+sudo curl -4 icanhazip.com
+sudo systemctl start nginx
+sudo systemctl enable nginx
+read -p  "Enter your domain adress:" domain
+sudo mkdir -p /var/www/$domain/html
+sudo chown -R $USER:$USER /var/www/$domain/html
+sudo chmod -R 755 /var/www/$domain
+sudo touch /var/www/$domain/html/index.html
+sudo cat << EOF >> /etc/nginx/sites-available/$domain
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/$domain/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name $domain www.$domain;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
+sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+
+# Setup TLS for nginx
+
+
