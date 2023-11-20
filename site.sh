@@ -61,5 +61,9 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # Setup TLS for nginx
-
-
+sudo apt install -y certbot python3-certbot-nginx
+sudo nginx -t
+sudo systemctl reload nginx
+sudo certbot --nginx -d $domain -d www.$domain
+sudo systemctl status certbot.timer
+sudo certbot renew --dry-run
