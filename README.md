@@ -16,20 +16,20 @@ sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start
 
 For manual installation, copy and run the following command in the terminal.
 ```
-sudo bash curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh | bash
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ssl.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tls.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/swap.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/corn.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/udpgw.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/site.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ufw.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/user.sh)"
-sudo bash -c "$(curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/warp.sh)"
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/bbr.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/hybla.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ssl.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tls.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/swap.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/corn.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/udpgw.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/site.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/ufw.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/user.sh | sudo bash
+sudo curl -Ls https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/warp.sh | sudo bash
 ```
 Used Projects in this script 🙏
 ```
