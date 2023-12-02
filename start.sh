@@ -28,7 +28,7 @@ clear
 
 # 1. Function to install essential packages
 essential_packages() {
-  dialog --title "Install Essential Packages" --yesno "Do you want to proceed?" 10 60
+  dialog --title "Install Essential Packages" --yesno "Do you want to Install Essential Packages?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
   sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh)"  
@@ -40,7 +40,7 @@ essential_packages() {
 
 # 2. Function to install advanced packages
 advanced_packages() {
-  dialog --title "Install Advanced Packages" --yesno "Do you want to proceed?" 10 60
+  dialog --title "Install Advanced Packages" --yesno "Do you want to Install Advanced Packages?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
   sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/advanced.sh)"
