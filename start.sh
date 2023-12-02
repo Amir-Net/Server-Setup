@@ -134,56 +134,16 @@ enable_and_configure_cron() {
   fi
 }
 
-# 8. Function to Install Multiprotocol VPN Panel
-install_vpn_panel() {
-  dialog --title "Install Multiprotocol VPN Panel" --menu "Select a VPN Panel to Install:" 15 60 8 \
-    "1" "X-UI | Alireza" \
-    "2" "X-UI | MHSanaei" \
-    "3" "X-UI | vaxilu" \
-    "4" "X-UI | FranzKafkaYu" \
-    "5" "X-UI En | FranzKafkaYu" \
-    "6" "reality-ezpz | aleskxyz" \
-    "7" "Hiddify" \
-    "8" "Marzban | Gozargah" 2> vpn_choice.txt
-     
-  vpn_choice=$(cat vpn_choice.txt)
-
-  case $vpn_choice in
-    "1")
-      bash <(curl -Ls https://raw.githubusercontent.com/alireza0/x-ui/master/install.sh)
-      ;;
-    "2")
-      bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
-      ;;
-    "3")
-      bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
-      ;;
-    "4")
-      bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install.sh)
-      ;;
-    "5")
-      bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/x-ui/master/install_en.sh)
-      ;;
-    "6")
-      bash <(curl -sL https://raw.githubusercontent.com/aleskxyz/reality-ezpz/master/reality-ezpz.sh)
-      ;;
-    "7")
-      bash -c "$(curl -Lfo- https://raw.githubusercontent.com/hiddify/hiddify-config/main/common/download_install.sh)"
-      ;;
-    "8")
-      sudo bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install
-      marzban cli admin create --sudo
-      ;;
-    *)
-      dialog --msgbox "Invalid choice. No VPN Panel installed." 10 40
-      return
-      ;;
-  esac
-
-  # Wait for the user to press Enter
-  read -p "Please press Enter to continue."
-
-  # Return to the menu
+# 8. Function to Install Tweaker
+install_tweaker() {
+  dialog --title "Enable Tweaker" --yesno "Do you want to enable Tweaker?\n\nEnabling Tweaker can lead to conflicts. Are you sure you want to proceed?" 12 60
+  response=$?
+  if [ $response -eq 0 ]; then
+  sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tweaker.sh)"
+    dialog --msgbox "Tweaker has been enabled successfully." 10 60
+  else
+    dialog --msgbox "Tweaker configuration skipped." 10 60
+  fi
 }
 
 # 9. Function to obtain SSL certificates
@@ -324,88 +284,55 @@ enable_ufw() {
   dialog --msgbox "UFW enabled and configured successfully.\nSSH port $ssh_port and additional ports allowed." 12 60
 }
 
-# 13. Function to install and configure WARP Proxy
-install_configure_warp_proxy() {
-  dialog --title "Install & Configure WARP Proxy" --yesno "Do you want to install and configure WARP Proxy?" 10 60
+# 13. Function to install UDPGW
+install_UDPGW() {
+  dialog --title "Install & Configure UDPGW" --yesno "Do you want to install and configure UDPGW?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
-    bash <(curl -fsSL git.io/warp.sh) proxy
+    sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/udpgw.sh)"
     
     # Wait for the user to press Enter
     read -p "Please Press Enter to continue"
     
-    dialog --msgbox "WARP Proxy installed and configured successfully." 10 60
+    dialog --msgbox "UDPGW installed and configured successfully." 10 60
   else
-    dialog --msgbox "Skipping installation and configuration of WARP Proxy." 10 60
+    dialog --msgbox "Skipping installation and configuration of UDPGW." 10 60
   fi
 }
 
-# 14 Function to set up MTProto Proxy submenu
-setup_mtproto_proxy_submenu() {
-  local mtproto_choice
-  dialog --title "Setup MTProto Proxy" --menu "Choose an MTProto Proxy option:" 15 60 6 \
-    1 "Setup Erlang MTProto (recommended) | Sergey Prokhorov" \
-    2 "Setup/Manage Python MTProto | HirbodBehnam" \
-    3 "Setup/Manage Official MTProto | HirbodBehnam" \
-    4 "Setup/Manage Golang MTProto | HirbodBehnam" 2> mtproto_choice.txt
-
-  mtproto_choice=$(cat mtproto_choice.txt)
-
-  case $mtproto_choice in
-    "1")
-      # Setup Erlang MTProto
-      curl -L -o mtp_install.sh https://git.io/fj5ru && bash mtp_install.sh
-      ;;
-    "2")
-      # Setup/Manage Python MTProto
-      curl -o MTProtoProxyInstall.sh -L https://git.io/fjo34 && bash MTProtoProxyInstall.sh
-      ;;
-    "3")
-      # Setup/Manage Official MTProto
-      curl -o MTProtoProxyOfficialInstall.sh -L https://git.io/fjo3u && bash MTProtoProxyOfficialInstall.sh
-      ;;
-    "4")
-      # Setup/Manage Golang MTProto
-      curl -o MTGInstall.sh -L https://git.io/mtg_installer && bash MTGInstall.sh
-      ;;
-    *)
-      dialog --msgbox "Invalid choice. No MTProto Proxy setup performed." 10 40
-      return
-      ;;
-  esac
-
-  # Wait for the user to press Enter
-  read -p "Please press Enter to continue."
-}
-
-# Function to set up MTProto Proxy
-setup_mtproto_proxy() {
-  dialog --title "Setup MTProto Proxy" --yesno "Do you want to set up an MTProto Proxy? It is recommended to install only one of these options, Installing multiple options may lead to conflicts." 10 60
+# 14 Function to set up WebSite
+setup_WebSite() {
+  dialog --title "Install & Configure WebSite" --yesno "Do you want to install and configure WebSite?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
-    setup_mtproto_proxy_submenu
+    sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/website.sh)"
+    
+    # Wait for the user to press Enter
+    read -p "Please Press Enter to continue"
+    
+    dialog --msgbox "WebSite installed and configured successfully." 10 60
   else
-    dialog --msgbox "Skipping MTProto Proxy setup." 10 40
+    dialog --msgbox "Skipping installation and configuration of WebSite." 10 60
   fi
 }
 
-# 15. Function to setup Hysteria II
-setup_hysteria_ii() {
-  bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Hysteria-Installer/main/hysteria.sh)
-
-  # Wait for the user to press Enter
-  read -p "Please Press Enter to continue"
+# 15. Function to WordPress
+setup_WordPress() {
+  dialog --title "Install & Configure WordPress" --yesno "Do you want to install and configure WordPress?" 10 60
+  response=$?
+  if [ $response -eq 0 ]; then
+    sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/wordpress.sh)"
+    
+    # Wait for the user to press Enter
+    read -p "Please Press Enter to continue"
+    
+    dialog --msgbox "WordPress installed and configured successfully." 10 60
+  else
+    dialog --msgbox "Skipping installation and configuration of WordPress." 10 60
+  fi
 }
 
-# 16. Function to setup TUIC v5
-setup_tuic_v5() {
-  bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/tuic-v5-installer/main/tuic-installer.sh)
-
-  # Wait for the user to press Enter
-  read -p "Please Press Enter to continue"
-}
-
-# 17. Function to setup Juicity
+# 16. Function to setup Juicity
 setup_juicity() {
   dialog --title "Setup Juicity" --yesno "Do you want to setup Juicity?" 10 60
   response=$?
@@ -419,79 +346,7 @@ setup_juicity() {
   # Return to the menu
 }
 
-# 18. Function to set up WireGuard
-setup_wireguard_angristan() {
-  dialog --title "Setup WireGuard | angristan" --yesno "Do you want to set up WireGuard using angristan's script?" 10 60
-  response=$?
-  if [ $response -eq 0 ]; then
-    # Download and execute the WireGuard installation script
-    curl -O https://raw.githubusercontent.com/angristan/wireguard-install/master/wireguard-install.sh
-    chmod +x wireguard-install.sh
-    ./wireguard-install.sh
-
-    # Wait for the user to press Enter
-    read -p "Please press Enter to continue."
-  else
-    dialog --msgbox "Skipping WireGuard installation." 10 40
-  fi
-}
-
-# 19. Function to set up OpenVPN
-setup_openvpn_angristan() {
-  dialog --title "Setup OpenVPN | angristan" --yesno "Do you want to set up OpenVPN using angristan's script?" 10 60
-  response=$?
-  if [ $response -eq 0 ]; then
-    # Download and execute the OpenVPN installation script
-    curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
-    chmod +x openvpn-install.sh
-    ./openvpn-install.sh
-
-    # Wait for the user to press Enter
-    read -p "Please press Enter to continue."
-  else
-    dialog --msgbox "Skipping OpenVPN installation." 10 40
-  fi
-}
-
-# 20. Function to set up IKEv2/IPsec
-setup_ikev2_ipsec() {
-  dialog --title "Setup IKEv2/IPsec" --yesno "Do you want to set up IKEv2/IPsec?" 10 60
-  response=$?
-  if [ $response -eq 0 ]; then
-    # Download and execute the IKEv2/IPsec installation script
-    curl -fsSL https://get.vpnsetup.net -o vpn.sh && sudo sh vpn.sh
-
-    # Wait for the user to press Enter
-    read -p "Please press Enter to continue."
-  else
-    dialog --msgbox "Skipping IKEv2/IPsec setup." 10 40
-  fi
-}
-
-# 21. Function to setup Reverse Tls Tunnel
-setup_reverse_tls_tunnel() {
-  # Ask the user if they want to install Reverse Tls Tunnel
-  dialog --title "Setup Reverse Tls Tunnel" --yesno "Do you want to install Reverse Tls Tunnel developed by radkesvat?" 10 60
-  response=$?
-  if [ $response -eq 0 ]; then
-    # Download the script and make it executable
-    wget "https://raw.githubusercontent.com/radkesvat/ReverseTlsTunnel/master/install.sh" -O install.sh && chmod +x install.sh && bash install.sh
-
-    # Display instructions in the terminal
-    echo "ReverseTlsTunnel has been downloaded. Please run it in an Iran server with this command:"
-    echo "nohup ./RTT --iran --lport:443 --sni:splus.ir --password:123"
-    echo
-    echo "And run it in an Abroad server with:"
-    echo "nohup ./RTT --kharej --iran-ip:5.4.3.2 --iran-port:443 --toip:127.0.0.1 --toport:2083 --password:123 --sni:splus.ir"
-
-    # Wait for the user to press Enter
-    read -p "Please Press Enter to continue"
-  else
-    dialog --msgbox "Skipping installation of Reverse Tls Tunnel." 10 60
-  fi
-}
-
-# 22. Function to create a non-root SSH user
+# 17. Function to create a non-root SSH user
 create_ssh_user() {
   # Ask the user for the username
   dialog --title "Create SSH User" --inputbox "Enter the username for the new SSH user:" 10 60 2> username.txt
@@ -523,7 +378,23 @@ create_ssh_user() {
   dialog --title "SSH User Created" --msgbox "SSH user '$username' has been created successfully.\n\nUsername: $username\nPassword: $password" 12 60
 }
 
-# 23. Function to reboot the system
+# 18. Function to install and configure WARP Proxy
+install_configure_warp_proxy() {
+  dialog --title "Install & Configure WARP Proxy" --yesno "Do you want to install and configure WARP Proxy?" 10 60
+  response=$?
+  if [ $response -eq 0 ]; then
+    bash <(curl -fsSL git.io/warp.sh) proxy
+    
+    # Wait for the user to press Enter
+    read -p "Please Press Enter to continue"
+    
+    dialog --msgbox "WARP Proxy installed and configured successfully." 10 60
+  else
+    dialog --msgbox "Skipping installation and configuration of WARP Proxy." 10 60
+  fi
+}
+
+# 19. Function to reboot the system
 reboot_system() {
   dialog --title "Reboot System" --yesno "Do you want to reboot the system?" 10 60
   response=$?
@@ -536,7 +407,7 @@ reboot_system() {
   fi
 }
 
-# 24. Function to exit the script
+# 20. Function to exit the script
 exit_script() {
   clear  # Clear the terminal screen for a clean exit
   echo "Exiting the script. Goodbye!"
@@ -546,8 +417,8 @@ exit_script() {
 # Main menu options using dialog
 while true; do
   choice=$(dialog --clear --backtitle "FreeIRAN v.1.3.0 - Main Menu" --title "Main Menu" --menu "Choose an option:" 18 60 15 \
-    1 "System Update and Cleanup" \
-    2 "Install Essential Packages" \
+    1 "Install Essential Packages" \
+    2 "Install Advanced Packages" \
     3 "Install Speedtest" \
     4 "Create Swap File" \
     5 "Enable BBR" \
