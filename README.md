@@ -6,10 +6,13 @@ Connect to your server through ssh and copy and run the following command in the
 Server Preparation
 ```
 sudo apt update -y && sudo apt upgrade -y && reboot
+```
+After Rebooting Server
+```
 sudo apt install -y curl && sudo apt install -y dialog
 ```
 
-Server Installation
+Server Scripts Installation
 ```
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/start.sh)"
 ```
