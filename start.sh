@@ -332,15 +332,15 @@ setup_WordPress() {
   fi
 }
 
-# 16. Function to setup Juicity
+# 16. Function to setup Repositories
 setup_juicity() {
-  dialog --title "Setup Juicity" --yesno "Do you want to setup Juicity?" 10 60
+  dialog --title "Setup Repositories" --yesno "Do you want to setup Repositories?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
-    bash <(curl -fsSL https://raw.githubusercontent.com/deathline94/Juicity-Installer/main/juicity-installer.sh)
-    read -p "Juicity setup completed. Please Press Enter to continue."
+    sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/repositories.sh)"
+    read -p "Repositories setup completed. Please Press Enter to continue."
   else
-    dialog --msgbox "Skipping Juicity setup." 10 40
+    dialog --msgbox "Skipping Repositories setup." 10 40
   fi
 
   # Return to the menu
@@ -429,18 +429,14 @@ while true; do
     10 "Setup Pi-Hole" \
     11 "Change SSH Port" \
     12 "Enable UFW" \
-    13 "Install & Configure WARP Proxy" \
-    14 "Setup MTProto Proxy" \
-    15 "Setup/Manage Hysteria II" \
-    16 "Setup/Manage TUIC v5" \
-    17 "Setup/Manage Juicity" \
-    18 "Setup/Manage WireGuard" \
-    19 "Setup/Manage OpenVPN" \
-    20 "Setup IKEv2/IPsec" \
-    21 "Setup Reverse TLS Tunnel" \
-    22 "Create SSH User" \
-    23 "Reboot System" \
-    24 "Exit Script" 3>&1 1>&2 2>&3)
+    13 "Install UDPGW" \
+    14 "Setup WebSite" \
+    15 "Setup WordPress" \
+    16 "Setup Repositories" \
+    17 "Create SSH User" \
+    18 "Configure WARP Proxy" \
+    19 "Reboot System" \
+    20 "Exit Script" 3>&1 1>&2 2>&3)
 
   case $choice in
     1) system_update ;;
