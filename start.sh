@@ -27,7 +27,7 @@ fi
 clear
 
 # 1. Function to install essential packages
-system_update() {
+essential_packages() {
   dialog --title "Install Essential Packages" --yesno "Do you want to proceed?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
@@ -39,7 +39,7 @@ system_update() {
 }
 
 # 2. Function to install advanced packages
-install_essential_packages() {
+advanced_packages() {
   dialog --title "Install Advanced Packages" --yesno "Do you want to proceed?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
@@ -333,7 +333,7 @@ setup_WordPress() {
 }
 
 # 16. Function to setup Repositories
-setup_juicity() {
+setup_repositories() {
   dialog --title "Setup Repositories" --yesno "Do you want to setup Repositories?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
@@ -379,8 +379,8 @@ create_ssh_user() {
 }
 
 # 18. Function to install and configure WARP Proxy
-install_configure_warp_proxy() {
-  dialog --title "Install & Configure WARP Proxy" --yesno "Do you want to install and configure WARP Proxy?" 10 60
+install_configure_warp() {
+  dialog --title "Install & Configure WARP" --yesno "Do you want to install and configure WARP ?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
     bash <(curl -fsSL git.io/warp.sh) proxy
@@ -388,9 +388,9 @@ install_configure_warp_proxy() {
     # Wait for the user to press Enter
     read -p "Please Press Enter to continue"
     
-    dialog --msgbox "WARP Proxy installed and configured successfully." 10 60
+    dialog --msgbox "WARP installed and configured successfully." 10 60
   else
-    dialog --msgbox "Skipping installation and configuration of WARP Proxy." 10 60
+    dialog --msgbox "Skipping installation and configuration of WARP." 10 60
   fi
 }
 
@@ -424,7 +424,7 @@ while true; do
     5 "Enable BBR" \
     6 "Enable Hybla" \
     7 "Schedule Automatic Updates & ReStarts" \
-    8 "Install Multiprotocol VPN Panels" \
+    8 "Install Tweaker" \
     9 "Obtain SSL Certificates" \
     10 "Setup Pi-Hole" \
     11 "Change SSH Port" \
@@ -434,35 +434,31 @@ while true; do
     15 "Setup WordPress" \
     16 "Setup Repositories" \
     17 "Create SSH User" \
-    18 "Configure WARP Proxy" \
+    18 "Configure WARP" \
     19 "Reboot System" \
     20 "Exit Script" 3>&1 1>&2 2>&3)
 
   case $choice in
-    1) system_update ;;
-    2) install_essential_packages ;;
+    1) essential_packages ;;
+    2) advanced_packages ;;
     3) install_speedtest ;;
     4) create_swap_file ;;
     5) enable_bbr ;;
     6) enable_hybla ;;
     7) enable_and_configure_cron ;;
-    8) install_vpn_panel ;;
+    8) install_tweaker ;;
     9) obtain_ssl_certificates ;;
     10) setup_pi_hole ;;
     11) change_ssh_port ;;
     12) enable_ufw ;;
-    13) install_configure_warp_proxy ;;
-    14) setup_mtproto_proxy ;;
-    15) setup_hysteria_ii ;;
-    16) setup_tuic_v5 ;;
-    17) setup_juicity ;;
-    18) setup_wireguard_angristan ;;
-    19) setup_openvpn_angristan ;;
-    20) setup_ikev2_ipsec ;;
-    21) setup_reverse_tls_tunnel ;;
-    22) create_ssh_user ;;
-    23) reboot_system ;;
-    24) exit_script ;;
+    13) install_udpgw ;;
+    14) setup_website ;;
+    15) setup_wordpress ;;
+    16) setup_repositories ;;
+    17) create_ssh_user ;;
+    18) install_configure_warp ;;
+    19) reboot_system ;;
+    20) exit_script ;;
     *) echo "Invalid option. Please try again." ;;
   esac
 done
