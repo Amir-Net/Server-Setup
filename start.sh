@@ -285,7 +285,7 @@ enable_ufw() {
 }
 
 # 13. Function to install UDPGW
-install_UDPGW() {
+install_udpgw() {
   dialog --title "Install & Configure UDPGW" --yesno "Do you want to install and configure UDPGW?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
@@ -301,7 +301,7 @@ install_UDPGW() {
 }
 
 # 14 Function to set up WebSite
-setup_WebSite() {
+setup_website() {
   dialog --title "Install & Configure WebSite" --yesno "Do you want to install and configure WebSite?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
@@ -317,7 +317,7 @@ setup_WebSite() {
 }
 
 # 15. Function to WordPress
-setup_WordPress() {
+setup_wordpress() {
   dialog --title "Install & Configure WordPress" --yesno "Do you want to install and configure WordPress?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
