@@ -416,7 +416,7 @@ exit_script() {
 
 # Main menu options using dialog
 while true; do
-  choice=$(dialog --clear --backtitle "FreeIRAN v.1.3.0 - Main Menu" --title "Main Menu" --menu "Choose an option:" 18 60 15 \
+  choice=$(dialog --clear --backtitle "Server-Setup V1 - Main Menu" --title "Main Menu" --menu "Choose an option:" 30 60 20 \
     1 "Install Essential Packages" \
     2 "Install Advanced Packages" \
     3 "Install Speedtest" \
