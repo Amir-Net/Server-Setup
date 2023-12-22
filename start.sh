@@ -67,7 +67,7 @@ create_swap_file() {
   dialog --title "Create SWAP File" --yesno "Do you want to create a SWAP file?" 10 60
   response=$?
   if [ $response -eq 0 ]; then
-  sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh)"
+  sudo apt install -y curl && sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/swap.sh)"
     dialog --msgbox "SWAP file created successfully." 10 60
   else
     dialog --msgbox "Skipping SWAP file creation." 10 60
