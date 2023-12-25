@@ -32,3 +32,4 @@ echo "net.ipv4.tcp_congestion_control = bbr" | sudo tee -a /etc/sysctl.conf
 
 # Apply the new settings
 sudo sysctl -p
+read -n 1 -s -r -p "Press any key to continue"
