@@ -58,3 +58,4 @@ clear
       echo "$setting" | sudo tee -a /etc/ufw/sysctl.conf
     done
     sudo sysctl -p
+  read -n 1 -s -r -p "Press any key to continue"
