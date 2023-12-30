@@ -27,14 +27,14 @@ fi
 clear
 
 # update and install
-sudo apt update
-sudo apt upgrade
-sudo apt install resolvconf
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y resolvconf
 sudo systemctl start resolvconf.service
 sudo systemctl enable resolvconf.service
 sudo systemctl status resolvconf.service
 
-read -p  "Enter DNS:" dns
+read -p  "Enter Your DNS:" dns
 sudo echo $dns | sudo tee -a /etc/resolvconf/resolv.conf.d/head
 unset dns
 
