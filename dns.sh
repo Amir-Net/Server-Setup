@@ -41,4 +41,4 @@ unset dns
 sudo resolvconf --enable-updates
 sudo resolvconf -u
 resolvectl status
-
+cat /etc/network/interfaces
