@@ -26,14 +26,19 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
-  # read on-login users
-  read -p  "Enter your usernames (comma-separated, e.g. A,B):" user_names
-  
-  # Add names to the user
-    if [ -n "$user_names" ]; then
-    IFS=',' read -ra names_array <<< "$user_names"
-    for port in "${names_array[@]}"; do
-      sudo adduser "$port" --shell /usr/sbin/nologin
-    done
-  fi
-  unset user_names
+# update and install
+sudo apt update
+sudo apt upgrade
+sudo apt install resolvconf
+sudo systemctl start resolvconf.service
+sudo systemctl enable resolvconf.service
+sudo systemctl status resolvconf.service
+
+read -p  "Enter DNS:" dns
+sudo echo $dns | sudo tee -a /etc/resolvconf/resolv.conf.d/head
+unset dns
+
+sudo resolvconf --enable-updates
+sudo resolvconf -u
+resolvectl status
+
