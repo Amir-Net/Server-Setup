@@ -49,9 +49,9 @@ server {
         index index.html index.htm index.nginx-debian.html;
         server_name $domain;
         location / {
-                try_files $uri $uri/ =404;
+        try_files $uri $uri/ =404;
         }
-}
+       }
 EOF
 sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
 sudo nginx -t
