@@ -59,6 +59,7 @@ EOF
 sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
+unset domain
 
 # Setup TLS for nginx
 sudo apt install -y certbot python3-certbot-nginx
