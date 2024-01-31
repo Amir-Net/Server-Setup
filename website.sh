@@ -45,12 +45,9 @@ sudo cat << EOF >> /etc/nginx/sites-available/$domain
 server {
         listen 80;
         listen [::]:80;
-
         root /var/www/$domain/html;
         index index.html index.htm index.nginx-debian.html;
-
-        server_name $domain www.$domain;
-
+        server_name $domain;
         location / {
                 try_files $uri $uri/ =404;
         }
@@ -64,7 +61,7 @@ sudo systemctl restart nginx
 sudo apt install -y certbot python3-certbot-nginx
 sudo nginx -t
 sudo systemctl reload nginx
-sudo certbot --nginx -d $domain -d www.$domain
+sudo certbot --nginx -d $domain
 sudo systemctl status certbot.timer
 sudo certbot renew --dry-run
 unset domain
