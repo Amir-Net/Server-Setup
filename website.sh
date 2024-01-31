@@ -37,7 +37,6 @@ sudo curl -4 icanhazip.com
 sudo systemctl start nginx
 sudo systemctl enable nginx
 sudo rm -r /var/www/html
-sudo rm -r /etc/nginx/sites-available/default
 read -p  "Enter your domain adress:" domain
 sudo mkdir -p /var/www/$domain/html
 sudo chown -R $USER:$USER /var/www/$domain/html
