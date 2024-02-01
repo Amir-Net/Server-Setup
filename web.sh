@@ -62,7 +62,7 @@ server {
         }
        }
 EOF
-sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/$domain
 sudo nginx -t
 sudo systemctl restart nginx
 systemctl status nginx
