@@ -35,7 +35,6 @@ sudo ufw allow 'Nginx Full'
 sudo curl -4 icanhazip.com
 sudo systemctl start nginx
 sudo systemctl enable nginx
-systemctl status nginx
 sudo rm -r /var/www/html
 read -p  "Enter your domain adress:" domain
 sudo mkdir -p /var/www/$domain/html
