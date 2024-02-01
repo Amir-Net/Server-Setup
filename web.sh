@@ -32,9 +32,10 @@ sudo apt install  -y nginx
 sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'Nginx HTTPS'
 sudo ufw allow 'Nginx Full'
-sudo curl -4 icanhazip.com
 sudo systemctl start nginx
 sudo systemctl enable nginx
+
+# Setup domain
 read -p  "Enter your domain adress:" domain
 sudo mkdir -p /var/www/$domain/html
 sudo chown -R $USER:$USER /var/www/$domain/html
@@ -65,4 +66,4 @@ EOF
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/$domain
 sudo nginx -t
 sudo systemctl restart nginx
-systemctl status nginx
+sudo systemctl status nginx
