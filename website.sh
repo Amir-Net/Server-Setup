@@ -35,8 +35,6 @@ sudo ufw allow 'Nginx Full'
 sudo curl -4 icanhazip.com
 sudo systemctl start nginx
 sudo systemctl enable nginx
-systemctl status nginx
-sudo rm -r /var/www/html
 read -p  "Enter your domain adress:" domain
 sudo mkdir -p /var/www/$domain/html
 sudo chown -R $USER:$USER /var/www/$domain/html
@@ -57,6 +55,7 @@ EOF
 sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
+systemctl status nginx
 
 # Setup TLS for nginx
 sudo apt install -y certbot python3-certbot-nginx
