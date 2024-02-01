@@ -46,8 +46,7 @@ sudo ufw allow 'Nginx Full'
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-# Prompt for domain and create directories
-read -p "Enter your domain address: " domain
+# Create domain directories
 sudo mkdir -p /var/www/$domain/html
 sudo chown -R $USER:$USER /var/www/$domain/html
 sudo chmod -R 755 /var/www/$domain
