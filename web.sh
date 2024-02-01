@@ -61,7 +61,7 @@ server {
         try_files $uri $uri/ =404;
         }
        }
-EOF;
+EOF
 sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
