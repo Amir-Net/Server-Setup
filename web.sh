@@ -38,7 +38,7 @@ sudo systemctl enable nginx
 # Setup domain
 read -p  "Enter your domain adress:" domain
 sudo mkdir -p /var/www/$domain/html
-sudo chown -R $USER:$USER /var/www/$domain/html
+sudo chown -R root:root /var/www/$domain/html
 sudo chmod -R 755 /var/www/$domain
 sudo touch /var/www/$domain/html/index.html
 sudo cat << EOF >> /var/www/$domain/html/index.html
