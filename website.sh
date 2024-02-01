@@ -72,9 +72,9 @@ clear
   echo "SSL/TLS Certificates by Letsencrypt"
   read -p "Enter your email:" email
   read -p "Enter your domain (e.g., sub.domain.com):" sni
-  if [ -n "$email" ] && [ -n "$domain" ]; then
-  sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email "$email" -d "$domain"
-  echo "SSL/TLS certificates obtained successfully for $domain in /etc/letsencrypt/live."
+  if [ -n "$email" ] && [ -n "$sni" ]; then
+  sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email "$email" -d "$sni"
+  echo "SSL/TLS certificates obtained successfully for $sni in /etc/letsencrypt/live."
   unset email
   unset sni
   else
