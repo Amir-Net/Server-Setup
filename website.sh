@@ -51,7 +51,7 @@ clear
   sudo chown -R $USER:$USER /var/www/$domain/html
   sudo chmod -R 755 /var/www/$domain
   sudo touch /var/www/$domain/html/index.html
-  cat << EOF /var/www/$domain/html/index.html
+  cat <<EOF>> /var/www/$domain/html/index.html
     <html>
     <head>
         <title>Welcome to $domain!</title>
@@ -60,8 +60,8 @@ clear
         <h1>Success!  The Nginx is working!</h1>
     </body>
     </html>
-  EOF
-  cat << EOF /etc/nginx/sites-available/$domain
+  EOF;
+  cat <<EOF>> /etc/nginx/sites-available/$domain
   server {
           listen 80;
           listen [::]:80;
@@ -72,7 +72,7 @@ clear
           try_files $uri $uri/ =404;
           }
          }
-  EOF
+  EOF;
   sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled
   sudo nginx -t
   sudo systemctl restart nginx
