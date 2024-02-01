@@ -28,7 +28,7 @@ clear
 
 # Setup nginx
 sudo apt update -y
-sudo apt install  -y nginx
+sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'Nginx HTTPS'
 sudo ufw allow 'Nginx Full'
