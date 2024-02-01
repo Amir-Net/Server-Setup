@@ -40,7 +40,7 @@ clear
   sudo chown -R $USER:$USER /var/www/$domain/html
   sudo chmod -R 755 /var/www/$domain
   sudo touch /var/www/$domain/html/index.html
-  sudo cat << EOF >> /var/www/$domain/html/index.html
+  cat << EOF /var/www/$domain/html/index.html
     <html>
     <head>
         <title>Welcome to $domain!</title>
@@ -50,7 +50,7 @@ clear
     </body>
     </html>
   EOF
-  sudo cat << EOF >> /etc/nginx/sites-available/$domain
+  cat << EOF /etc/nginx/sites-available/$domain
   server {
           listen 80;
           listen [::]:80;
