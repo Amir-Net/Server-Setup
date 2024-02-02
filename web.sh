@@ -38,10 +38,45 @@ clear
  else
  echo "Both email and domain are required to obtain SSL certificates."
  fi
- 
- # Setup nginx
- sudo apt install -y nginx ufw
- sudo systemctl start nginx
- sudo systemctl enable nginx
- sudo ufw allow 'Nginx Full'
- sudo nginx -t
+
+# Setup nginx
+sudo apt update -y
+sudo apt install -y nginx ufw
+sudo ufw allow 'Nginx Full'
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+# Create Nginx configuration
+cat << EOF > /etc/nginx/sites-available/default
+server {
+    listen 80;
+    listen [::]:80;
+    server_name $domain www.$domain;
+
+    # Redirect to HTTPS
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name $domain www.$domain;
+    # SSL/TLS configuration
+    ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
+    root /var/www/$domain/html;
+    index index.html index.htm index.nginx-debian.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+EOF
+
+sudo systemctl reload nginx
+sudo systemctl restart nginx
+sudo nginx -t
+
+# Setup TLS for nginx
+# sudo certbot --nginx -d $domain -d www.$domain
+# sudo systemctl status certbot.timer
+# sudo certbot renew --dry-run
