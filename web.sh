@@ -41,21 +41,21 @@ clear
  
  # Setup nginx
  sudo apt install -y nginx ufw
- sudo ufw allow 'Nginx Full'
  sudo systemctl start nginx
  sudo systemctl enable nginx
+ sudo ufw allow 'Nginx Full'
 
- # Create index.html
- cat << EOF > /var/www/html/index.html
- <!DOCTYPE html>
- <html lang="en">
- <head>
+# Create index.html
+cat << EOF > /var/www/$domain/html/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon | $domain</title>
+  <title>Coming Soon | Your Website Name</title>
   <link rel="stylesheet" href="style.css">
- </head>
- <body>
+</head>
+<body>
   <div class="container">
     <header>
       <h1>Something amazing is coming soon!</h1>
@@ -84,6 +84,6 @@ clear
       </div>
     </footer>
   </div>
- </body>
- </html>
- EOF
+</body>
+</html>
+EOF
