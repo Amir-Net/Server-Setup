@@ -19,25 +19,13 @@
 # Check for sudo privileges
 if [[ $EUID -ne 0 ]]; then
   if [[ $(sudo -n true 2>/dev/null) ]]; then
-    echo "This script will be run with sudo privileges."
+  echo "This script will be run with sudo privileges."
   else
-    echo "This script must be run with sudo privileges."
-    exit 1
+  echo "This script must be run with sudo privileges."
+  exit 1
   fi
 fi
 clear
-
- # install certificate
- sudo apt install -y certbot python3-certbot-nginx
- echo "SSL/TLS Certificates by Letsencrypt"
- read -p "Enter your email:" email
- read -p "Enter your domain adress:" domain
- if [ -n "$email" ] && [ -n "$domain" ]; then
- sudo certbot certonly --standalone --preferred-challenges http --email "$email" -d "$domain"
- echo "SSL/TLS certificates obtained successfully for $domain in /etc/letsencrypt/live."
- else
- echo "Both email and domain are required to obtain SSL certificates."
- fi
 
 # Setup nginx
 sudo apt update -y
@@ -46,6 +34,17 @@ sudo ufw allow 'Nginx Full'
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
+# install certificate
+sudo apt install -y certbot python3-certbot-nginx
+echo "SSL/TLS Certificates by Letsencrypt"
+read -p "Enter your email:" email
+read -p "Enter your domain adress:" domain
+if [ -n "$email" ] && [ -n "$domain" ]; then
+sudo certbot certonly --standalone --preferred-challenges http --email "$email" -d "$domain"
+echo "SSL/TLS certificates obtained successfully for $domain in /etc/letsencrypt/live."
+else
+echo "Both email and domain are required to obtain SSL certificates."
+fi
 
 # Setup TLS for nginx
 sudo certbot --nginx -d $domain -d www.$domain
