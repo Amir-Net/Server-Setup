@@ -44,46 +44,4 @@ clear
  sudo systemctl start nginx
  sudo systemctl enable nginx
  sudo ufw allow 'Nginx Full'
-
-# Create index.html
-cat << EOF > /var/www/$domain/html/index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon | Your Website Name</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>Something amazing is coming soon!</h1>
-      <p class="tagline">Stay tuned for the launch of our new website.</p>
-    </header>
-    <img src="coming-soon-image.jpg" alt="Coming soon image">
-    <div class="countdown">
-      <h2>Launching in:</h2>
-      <div class="days">00</div>
-      <div class="hours">00</div>
-      <div class="minutes">00</div>
-      <div class="seconds">00</div>
-    </div>
-    <form class="subscribe-form">
-      <h3>Get notified when we launch:</h3>
-      <input type="email" placeholder="Enter your email address">
-      <button type="submit">Subscribe</button>
-    </form>
-    <footer>
-      <p>&copy; 2024 Your Website Name</p>
-      <p>Follow us on social media:</p>
-      <div class="social-icons">
-        <a href="#"><img src="facebook-icon.svg" alt="Facebook"></a>
-        <a href="#"><img src="twitter-icon.svg" alt="Twitter"></a>
-        <a href="#"><img src="instagram-icon.svg" alt="Instagram"></a>
-      </div>
-    </footer>
-  </div>
-</body>
-</html>
-EOF
+ sudo nginx -t
