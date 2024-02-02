@@ -33,7 +33,7 @@ clear
  read -p "Enter your email:" email
  read -p "Enter your domain adress:" domain
  if [ -n "$email" ] && [ -n "$domain" ]; then
- sudo certbot certonly --standalone --preferred-challenges http --email $email -d $domian -d www.$domian
+ sudo certbot certonly --standalone --preferred-challenges http --email "$email" -d "$domain"
  echo "SSL/TLS certificates obtained successfully for $domain in /etc/letsencrypt/live."
  else
  echo "Both email and domain are required to obtain SSL certificates."
@@ -47,7 +47,6 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 
 # Prompt for domain and create directories
-read -p "Enter your domain address: " domain
 sudo mkdir -p /var/www/$domain/html
 sudo chown -R $USER:$USER /var/www/$domain/html
 sudo chmod -R 755 /var/www/$domain
