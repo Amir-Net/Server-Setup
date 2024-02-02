@@ -46,37 +46,38 @@ sudo ufw allow 'Nginx Full'
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
+
+# Setup TLS for nginx
+sudo certbot --nginx -d $domain -d www.$domain
+sudo systemctl status certbot.timer
+sudo certbot renew --dry-run
+
 # Create Nginx configuration
 cat << EOF > /etc/nginx/sites-available/default
-server {
-    listen 80;
-    listen [::]:80;
-    server_name $domain www.$domain;
-
-    # Redirect to HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-    server_name $domain www.$domain;
-    # SSL/TLS configuration
+server 
+ {
+    listen 80 ;
+    listen [::]:80 ;
+    index index.html index.htm index.nginx-debian.html;
+    server_name $domain;
+    location / 
+    {
+    try_files $uri $uri/ =404;
+    }
+    listen 443 ssl;
+    listen [::]:443 ssl ipv6only=on;
     ssl_certificate /etc/letsencrypt/live/$domain/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/$domain/privkey.pem;
-    root /var/www/$domain/html;
-    index index.html index.htm index.nginx-debian.html;
-    location / {
-        try_files $uri $uri/ =404;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    location / 
+    {
+    try_files $uri $uri/ =404;
     }
-}
+  }
 EOF
 
+# Reset and test Nginx
 sudo systemctl reload nginx
 sudo systemctl restart nginx
 sudo nginx -t
-
-# Setup TLS for nginx
-# sudo certbot --nginx -d $domain -d www.$domain
-# sudo systemctl status certbot.timer
-# sudo certbot renew --dry-run
