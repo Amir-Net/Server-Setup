@@ -31,7 +31,7 @@ sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Set
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/speed.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/warp.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/pihole.sh)"
-sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tweeker.sh)"
+sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/tcpo.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/website.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/wordpress.sh)"
 sudo bash -c "$(curl -Lfo- https://raw.githubusercontent.com/Amir-Net/Server-Setup/main/essential.sh)"
