@@ -35,4 +35,4 @@ clear
     done
   fi
   unset user_names
-  read -n "Press any key to continue"
+  read -p "Press enter key to continue"
