@@ -5,11 +5,11 @@ Connect to your server through ssh and copy and run the following command in the
 
 Server Preparation
 ```
-sudo apt update -y && sudo apt upgrade -y && reboot
+apt update -y && apt upgrade -y && reboot
 ```
 After Rebooting Server
 ```
-sudo apt install -y curl && sudo apt install -y dialog
+apt install -y sudo curl wget dialog
 ```
 
 Server Scripts Installation
