@@ -46,4 +46,4 @@ clear
      unset swap_size
      swapon --show
      free -h
-  read -n 1 -s -r -p "Press any key to continue"
+     read -p "Press enter key to continue"
