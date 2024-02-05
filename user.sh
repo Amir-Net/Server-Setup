@@ -27,6 +27,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 clear
 
+  # read on-login users
+  read -p  "Enter your usernames (comma-separated, e.g. A,B):" user_names
+  
   # Add usernames to the server
     if [ -n "$user_names" ]; then
     IFS=',' read -ra names_array <<< "$user_names"
