@@ -5,7 +5,7 @@ Connect to your server through ssh and copy and run the following command in the
 
 Server Preparation
 ```
-apt update -y && apt upgrade -y && reboot
+apt update -y && apt upgrade -y && apt autoremove -y && apt autoclean -y && reboot
 ```
 After Rebooting Server
 ```
